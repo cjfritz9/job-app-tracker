@@ -15,7 +15,7 @@ export const getAllApplications = async () => {
 
   console.log({ snapShotDocs: snap.docs, size: snap.size });
 
-  return jobApps;
+  return jobApps.sort((a, b) => b.status.weight - a.status.weight);
 };
 
 export const addApplication = async (data: JobAppDocument) => {

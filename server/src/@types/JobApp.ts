@@ -2,7 +2,10 @@ export interface JobAppDocument {
   companyName: string;
   dateSubmitted: string;
   isActive: boolean;
-  status: 'submitted' | 'stale' | 'interviewing' | 'offer';
+    status: {
+    name: 'submitted' | 'stale' | 'interviewing' | 'offer';
+    weight: number;
+  };
 }
 
 export interface JobAppData {
@@ -10,5 +13,8 @@ export interface JobAppData {
   companyName: string;
   dateSubmitted: string;
   isActive: boolean;
-  status: 'submitted' | 'stale' | 'interviewing' | 'offer';
+    status: {
+    name: 'submitted' | 'stale' | 'interviewing' | 'offer';
+    weight: number;
+  };
 }

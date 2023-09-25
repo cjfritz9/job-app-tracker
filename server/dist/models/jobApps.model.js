@@ -9,7 +9,7 @@ export const getAllApplications = async () => {
         jobApps.push({ id: doc.id, ...doc.data() });
     });
     console.log({ snapShotDocs: snap.docs, size: snap.size });
-    return jobApps;
+    return jobApps.sort((a, b) => b.status.weight - a.status.weight);
 };
 export const addApplication = async (data) => {
     const response = await collection.add(data);
