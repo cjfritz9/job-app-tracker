@@ -9,6 +9,7 @@ export const getAllApplications = async () => {
   const snap = await collection.get();
 
   snap.forEach((doc) => {
+    if (doc.id === 'schema') return;
     jobApps.push({ id: doc.id, ...(doc.data() as JobAppDocument) });
   });
 

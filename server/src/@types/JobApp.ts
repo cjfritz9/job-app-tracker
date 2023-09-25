@@ -1,8 +1,6 @@
-import { Timestamp } from 'firebase-admin/firestore';
-
 export interface JobAppDocument {
   companyName: string;
-  dateSubmitted: Timestamp;
+  dateSubmitted: string;
   isActive: boolean;
   status: 'submitted' | 'stale' | 'interviewing' | 'offer';
 }
@@ -10,7 +8,7 @@ export interface JobAppDocument {
 export interface JobAppData {
   id: string;
   companyName: string;
-  dateSubmitted: Timestamp;
+  dateSubmitted: string;
   isActive: boolean;
   status: 'submitted' | 'stale' | 'interviewing' | 'offer';
 }
