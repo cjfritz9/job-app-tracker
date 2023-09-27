@@ -1,20 +1,15 @@
 export interface JobAppDocument {
   companyName: string;
+  positionTitle: string;
+  postLink: string;
   dateSubmitted: string;
   isActive: boolean;
     status: {
     name: 'submitted' | 'stale' | 'interviewing' | 'offer';
-    weight: number;
+    weight: 1 | 2 | 3 | 4;
   };
 }
 
-export interface JobAppData {
+export interface JobAppData extends JobAppDocument {
   id: string;
-  companyName: string;
-  dateSubmitted: string;
-  isActive: boolean;
-    status: {
-    name: 'submitted' | 'stale' | 'interviewing' | 'offer';
-    weight: number;
-  };
 }

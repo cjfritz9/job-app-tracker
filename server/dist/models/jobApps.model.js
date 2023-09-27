@@ -8,12 +8,10 @@ export const getAllApplications = async () => {
             return;
         jobApps.push({ id: doc.id, ...doc.data() });
     });
-    console.log({ snapShotDocs: snap.docs, size: snap.size });
     return jobApps.sort((a, b) => b.status.weight - a.status.weight);
 };
 export const addApplication = async (data) => {
     const response = await collection.add(data);
-    console.log({ response });
     if (response?.id) {
         return { success: `${response.id} added to database` };
     }
@@ -21,10 +19,10 @@ export const addApplication = async (data) => {
         return;
     }
 };
-export const updateApplication = async (data) => {
-    const response = await collection.doc(data.id).update({ ...data });
+export const updateApplication = async ({ id, ...data }) => {
+    const response = await collection.doc(id).update({ ...data });
     if (response.writeTime) {
-        return { success: `${data.id} successfully updated` };
+        return { success: `${id} successfully updated` };
     }
     else {
         return;

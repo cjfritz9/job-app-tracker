@@ -4,7 +4,7 @@ import {
   getAllApplications,
   updateApplication
 } from '../models/jobApps.model';
-import { JobAppData } from '../@types/JobApp';
+import { JobAppData, JobAppDocument } from '../@types/JobApp';
 
 export const httpGetJobApps = async (_req: Request, res: Response) => {
   const response = await getAllApplications();
@@ -29,9 +29,15 @@ export const httpPostJobApp = async (req: Request, res: Response) => {
 };
 
 export const httpPatchJobApp = async (req: Request, res: Response) => {
-  const data: JobAppData = req.body;
+  const { docId } = req.params;
+  const data: JobAppDocument = req.body;
 
-  const result = await updateApplication(data);
+  const appData: JobAppData = {
+    id: docId,
+    ...data
+  }
+
+  const result = await updateApplication(appData);
 
   if (result) {
     res.status(200).send(result);

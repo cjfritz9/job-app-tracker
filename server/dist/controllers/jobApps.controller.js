@@ -19,8 +19,13 @@ export const httpPostJobApp = async (req, res) => {
     }
 };
 export const httpPatchJobApp = async (req, res) => {
+    const { docId } = req.params;
     const data = req.body;
-    const result = await updateApplication(data);
+    const appData = {
+        id: docId,
+        ...data
+    };
+    const result = await updateApplication(appData);
     if (result) {
         res.status(200).send(result);
     }
